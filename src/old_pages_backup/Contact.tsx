@@ -151,7 +151,7 @@ Sent from Shame to Flame Contact Form
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
             <h2 className="font-serif text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center">
-              Send Us a Message
+              Send Us a Message.
             </h2>
             <p className="text-gray-600 dark:text-gray-300 text-center mb-8">
               We read every message personally and respond with care. Your story matters to us.
