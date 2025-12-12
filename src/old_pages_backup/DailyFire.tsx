@@ -134,9 +134,11 @@ const DailyFire = () => {
             <button
               onClick={() => setShowAllDevotionals(!showAllDevotionals)}
               className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-medium py-3 px-8 rounded-full border-2 border-gray-200 dark:border-gray-600 hover:border-flame-300 dark:hover:border-flame-600 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto"
+              aria-expanded={showAllDevotionals}
+              aria-label={showAllDevotionals ? `Hide all ${devotionals.length} devotionals` : `View all ${devotionals.length} devotionals`}
             >
               {showAllDevotionals ? 'Hide' : 'View'} All {devotionals.length} Daily Fires
-              {showAllDevotionals ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+              {showAllDevotionals ? <ChevronUp className="h-5 w-5" aria-hidden="true" /> : <ChevronDown className="h-5 w-5" aria-hidden="true" />}
             </button>
           </div>
 

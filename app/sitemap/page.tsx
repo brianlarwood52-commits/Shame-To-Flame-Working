@@ -22,6 +22,7 @@ export default function SitemapPage() {
     {
       title: 'Resources',
       pages: [
+        { name: 'Crisis Help', url: '/crisis-help', description: 'Immediate help resources and crisis support hotlines' },
         { name: 'Healing Pathways', url: '/healing-pathways', description: 'Guided Bible studies for healing and recovery' },
         { name: 'Daily Fire', url: '/daily-fire', description: 'Daily devotionals and encouragements' },
         { name: 'Prayer Rock Archive', url: '/prayer-rock', description: 'Collection of prayers and testimonies' },
