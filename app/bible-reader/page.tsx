@@ -6,7 +6,7 @@ import CollapsibleBibleReader from '../../src/components/CollapsibleBibleReader'
 
 function BibleReaderContent() {
   const searchParams = useSearchParams()
-  const ref = searchParams.get('ref')
+  const ref = searchParams?.get('ref')
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-sky-50/90 to-flame-50/90 dark:from-sky-900/30 dark:to-flame-900/30 backdrop-blur-md py-16">
