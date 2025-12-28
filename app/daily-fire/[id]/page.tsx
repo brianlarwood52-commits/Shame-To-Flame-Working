@@ -1,17 +1,18 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Heart, ArrowLeft, Calendar, BookOpen } from 'lucide-react';
-import { getDevotionalById, devotionals, getTodaysDevotional } from '../../../src/data/dailyFireDevotionals';
+import { getDevotionalById, devotionals, getTodaysDevotional, getDevotionalBySlug, getDevotionalSlug, titleToSlug } from '../../../src/data/dailyFireDevotionals';
 
 export async function generateStaticParams() {
   return devotionals.map((devotional) => ({
-    id: devotional.id.toString(),
+    id: titleToSlug(devotional.title), // Use slug instead of ID for SEO
   }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const devotional = getDevotionalById(parseInt(id));
+  // Try slug first, then fallback to numeric ID for backward compatibility
+  const devotional = getDevotionalBySlug(id) || (Number.isInteger(Number(id)) ? getDevotionalById(parseInt(id)) : undefined);
 
   if (!devotional) {
     return {
@@ -22,6 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return {
     title: `${devotional.title} - Daily Fire | Shame to Flame`,
     description: devotional.message[0].substring(0, 160),
+    robots: 'index, follow',
     openGraph: {
       title: `${devotional.title} - Daily Fire`,
       description: devotional.message[0].substring(0, 160),
@@ -32,7 +34,8 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 export default async function DevotionalPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const devotional = getDevotionalById(parseInt(id));
+  // Try slug first, then fallback to numeric ID for backward compatibility
+  const devotional = getDevotionalBySlug(id) || (Number.isInteger(Number(id)) ? getDevotionalById(parseInt(id)) : undefined);
 
   if (!devotional) {
     notFound();
@@ -66,7 +69,7 @@ export default async function DevotionalPage({ params }: { params: Promise<{ id:
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://shametoflame.faith/daily-fire/${devotional.id}`
+      "@id": `https://shametoflame.faith/daily-fire/${getDevotionalSlug(devotional)}`
     },
     "articleSection": devotional.category,
     "keywords": `daily devotional, ${devotional.category.toLowerCase()}, christian encouragement, biblical hope`
@@ -181,23 +184,26 @@ export default async function DevotionalPage({ params }: { params: Promise<{ id:
       </section>
 
       {relatedDevotionals.length > 0 && (
-        <section className="py-16 bg-gradient-to-r from-sky-50 to-flame-50 dark:from-sky-900/30 dark:to-flame-900/30">
+        <section className="py-16 bg-gradient-to-r from-sky-50 to-flame-50 dark:from-sky-900/30 dark:to-flame-900/30 relative">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-12 text-center">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12 text-center relative z-10" style={{ 
+              textShadow: '2px 2px 4px rgba(0,0,0,0.3), -1px -1px 2px rgba(255,255,255,0.5)',
+              WebkitTextStroke: '0.5px rgba(0,0,0,0.2)'
+            }}>
               More on {devotional.category}
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {relatedDevotionals.map((related) => (
-                <Link key={related.id} href={`/daily-fire/${related.id}`}>
+                <Link key={related.id} href={`/daily-fire/${getDevotionalSlug(related)}`}>
                   <article className="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden cursor-pointer h-full">
-                    <div className="p-6">
+                    <div className="p-4 sm:p-6">
                       <div className="flex items-center justify-between mb-3">
                         <span className="text-xs text-gray-500 dark:text-gray-400">Day {related.id}</span>
                         <span className="text-xs text-flame-600 dark:text-flame-400">{related.readTime}</span>
                       </div>
 
-                      <h3 className="font-serif text-lg font-semibold text-gray-800 dark:text-white mb-2 hover:text-flame-600 dark:hover:text-flame-400 transition-colors duration-200">
+                      <h3 className="font-serif text-base sm:text-lg font-semibold text-gray-800 dark:text-white mb-2 hover:text-flame-600 dark:hover:text-flame-400 transition-colors duration-200">
                         {related.title}
                       </h3>
 

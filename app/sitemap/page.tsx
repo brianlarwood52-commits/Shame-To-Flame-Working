@@ -34,6 +34,7 @@ export default function SitemapPage() {
       title: 'Study Library',
       pages: [
         { name: 'Bible Study', url: '/bible-study', description: 'Interactive Bible reading and study tools' },
+        { name: 'Bible Reader', url: '/bible-reader', description: 'Read and search the Bible with multiple translations' },
         { name: 'SDA Commentary Search', url: '/sda-commentary-search', description: 'Search Seventh-day Adventist Bible Commentary' },
         { name: 'Mary Magdalene Apologetic', url: '/mary-magdalene-apologetic', description: 'Biblical study on Mary Magdalene' },
       ]

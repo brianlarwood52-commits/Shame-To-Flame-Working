@@ -1,0 +1,7 @@
+---
+title: My Homepage Title  ← this should appear in tab
+slug: home
+---
+
+# Main Content Here
+This is the body text that will show on the page soon.

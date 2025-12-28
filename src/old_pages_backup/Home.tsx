@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, Heart, Shield, Sunrise, Users, ChevronDown } from 'lucide-react';
+import VerseOfTheDay from '../components/VerseOfTheDay';
 
 const Home = () => {
   return (
@@ -103,7 +104,7 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
                 title: "Healing Pathways",
@@ -127,22 +128,24 @@ const Home = () => {
               <Link
                 key={index}
                 href={resource.link}
-                className="group block bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-white/20 dark:border-gray-700/50"
+                className="group block bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-white/20 dark:border-gray-700/50 aspect-[3/4]"
               >
-                <div className={`h-40 bg-gradient-to-br ${resource.gradient} flex items-center justify-center`}>
+                <div className={`h-28 bg-gradient-to-br ${resource.gradient} flex items-center justify-center`}>
                   <div className="text-white text-center">
-                    <div className="text-3xl font-serif font-bold mb-2">{resource.title}</div>
+                    <div className="text-xl lg:text-2xl font-serif font-bold mb-2">{resource.title}</div>
                   </div>
                 </div>
                 <div className="p-6">
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">{resource.description}</p>
-                  <div className="flex items-center text-flame-600 dark:text-flame-400 font-medium group-hover:text-flame-700 dark:group-hover:text-flame-300">
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4 text-sm">{resource.description}</p>
+                  <div className="flex items-center text-flame-600 dark:text-flame-400 font-medium group-hover:text-flame-700 dark:group-hover:text-flame-300 text-sm">
                     Explore Resource
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
                   </div>
                 </div>
               </Link>
             ))}
+            {/* Verse of the Day Card */}
+            <VerseOfTheDay />
           </div>
         </div>
       </section>

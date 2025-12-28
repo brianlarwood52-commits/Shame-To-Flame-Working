@@ -9,7 +9,7 @@ interface BibleReaderProps {
 }
 
 const BibleReader: React.FC<BibleReaderProps> = () => {
-  const [selectedVersion, setSelectedVersion] = useState('de4e12af7f28f599-02'); // ESV
+  const [selectedVersion, setSelectedVersion] = useState('de4e12af7f28f599-02'); // KJV
   const [selectedBook, setSelectedBook] = useState('JHN'); // John
   const [selectedChapter, setSelectedChapter] = useState(1);
   const [startVerse, setStartVerse] = useState<number | null>(null);

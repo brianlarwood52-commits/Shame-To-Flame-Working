@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return {
     title: `${post.title} | Prayer Rock Archive`,
     description: post.excerpt,
+    robots: 'index, follow',
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -133,7 +134,23 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
             </div>
 
             <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-serif prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-orange-600 dark:prose-a:text-orange-400 prose-strong:text-gray-900 dark:prose-strong:text-white prose-ul:text-gray-700 dark:prose-ul:text-gray-300 prose-ol:text-gray-700 dark:prose-ol:text-gray-300">
-              <div dangerouslySetInnerHTML={{ __html: post.content }} />
+              <article 
+                className="relative z-10"
+                style={{ 
+                  isolation: 'isolate',
+                  position: 'relative',
+                  opacity: 1,
+                  backgroundColor: 'transparent'
+                }}
+              >
+                <div 
+                  dangerouslySetInnerHTML={{ __html: post.content }}
+                  style={{
+                    position: 'relative',
+                    zIndex: 1
+                  }}
+                />
+              </article>
             </div>
 
             <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">

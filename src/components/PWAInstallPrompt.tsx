@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Download, X, Smartphone } from 'lucide-react';
+import { subscribe, getDeferredPrompt } from '../lib/pwa-install-store';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>;
@@ -14,25 +15,24 @@ const PWAInstallPrompt: React.FC = () => {
   useEffect(() => {
     // Check if app is already installed
     const checkInstalled = () => {
-      if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) {
+      if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) {
         setIsInstalled(true);
       }
     };
 
     checkInstalled();
 
-    // Listen for the beforeinstallprompt event
-    const handleBeforeInstallPrompt = (e: Event) => {
-      e.preventDefault();
-      setDeferredPrompt(e as BeforeInstallPromptEvent);
-      
-      // Show prompt after a delay to not be intrusive
-      setTimeout(() => {
-        if (!isInstalled && !localStorage.getItem('pwa-install-dismissed')) {
-          setShowPrompt(true);
-        }
-      }, 3000);
-    };
+    // Subscribe to shared prompt store (PWAWrapper captures the event)
+    const unsubscribe = subscribe((prompt) => {
+      setDeferredPrompt(prompt);
+      if (prompt && !isInstalled) {
+        setTimeout(() => {
+          if (!isInstalled && typeof window !== 'undefined' && !localStorage.getItem('pwa-install-dismissed')) {
+            setShowPrompt(true);
+          }
+        }, 3000);
+      }
+    });
 
     // Listen for app installed event
     const handleAppInstalled = () => {
@@ -42,21 +42,25 @@ const PWAInstallPrompt: React.FC = () => {
       console.log('PWA was installed');
     };
 
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-    window.addEventListener('appinstalled', handleAppInstalled);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('appinstalled', handleAppInstalled);
+    }
 
     return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-      window.removeEventListener('appinstalled', handleAppInstalled);
+      unsubscribe();
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('appinstalled', handleAppInstalled);
+      }
     };
   }, [isInstalled]);
 
   const handleInstallClick = async () => {
-    if (!deferredPrompt) return;
+    const prompt = deferredPrompt || (typeof window !== 'undefined' ? getDeferredPrompt() : null);
+    if (!prompt) return;
 
     try {
-      await deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
+      await prompt.prompt();
+      const { outcome } = await prompt.userChoice;
       
       if (outcome === 'accepted') {
         console.log('User accepted the install prompt');
@@ -73,7 +77,9 @@ const PWAInstallPrompt: React.FC = () => {
 
   const handleDismiss = () => {
     setShowPrompt(false);
-    localStorage.setItem('pwa-install-dismissed', 'true');
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('pwa-install-dismissed', 'true');
+    }
   };
 
   // Don't show if already installed or no prompt available
@@ -83,14 +89,14 @@ const PWAInstallPrompt: React.FC = () => {
 
   return (
     <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-sm z-50 animate-slide-up">
-      <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-xl shadow-xl border border-white/20 dark:border-gray-700/50 p-4">
-        <div className="flex items-start space-x-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-flame-400 to-flame-600 rounded-full flex items-center justify-center flex-shrink-0">
-            <Smartphone className="h-5 w-5 text-white" />
+      <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-xl shadow-xl border border-white/20 dark:border-gray-700/50 p-3.5">
+        <div className="flex items-start space-x-2.5">
+          <div className="w-8 h-8 bg-gradient-to-br from-flame-400 to-flame-600 rounded-full flex items-center justify-center flex-shrink-0">
+            <Smartphone className="h-4 w-4 text-white" />
           </div>
           
           <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-gray-800 dark:text-white text-sm">
+            <h3 className="font-semibold text-gray-800 dark:text-white text-xs">
               Install Shame to Flame
             </h3>
             <p className="text-gray-600 dark:text-gray-300 text-xs mt-1 leading-relaxed">
@@ -100,14 +106,14 @@ const PWAInstallPrompt: React.FC = () => {
             <div className="flex items-center space-x-2 mt-3">
               <button
                 onClick={handleInstallClick}
-                className="inline-flex items-center px-3 py-1.5 bg-flame-600 hover:bg-flame-700 text-white text-xs font-medium rounded-lg transition-colors duration-200"
+                className="inline-flex items-center px-6 py-1.5 bg-flame-600 hover:bg-flame-700 text-white text-xs font-medium rounded-lg transition-colors duration-200 whitespace-nowrap"
               >
-                <Download className="h-3 w-3 mr-1" />
-                Install
+                <Download className="h-3 w-3 mr-1.5" />
+                Install App
               </button>
               <button
                 onClick={handleDismiss}
-                className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-xs"
+                className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-xs whitespace-nowrap"
               >
                 Not now
               </button>

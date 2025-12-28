@@ -69,18 +69,27 @@ const PrivacyPolicy = () => {
                 </ul>
 
                 <h3 className="font-serif text-xl font-semibold text-gray-800 dark:text-white mt-6 mb-3">
-                  Automatically Collected Information
+                  What We Do NOT Collect
                 </h3>
-                <p className="text-gray-700 dark:text-gray-200 mb-4">
-                  When you visit our website, we automatically collect certain information about your device and usage:
-                </p>
-                <ul className="text-gray-700 dark:text-gray-200 space-y-2">
-                  <li>Browser type and version</li>
-                  <li>Device information (operating system, device type)</li>
-                  <li>IP address and general location information</li>
-                  <li>Pages visited and time spent on our site</li>
-                  <li>Referring website or source</li>
-                </ul>
+                <div className="bg-green-50/50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 rounded-lg p-6 mb-4">
+                  <p className="text-gray-700 dark:text-gray-200 mb-4">
+                    <strong>We do not track, collect, or store:</strong>
+                  </p>
+                  <ul className="text-gray-700 dark:text-gray-200 space-y-2 list-disc list-inside">
+                    <li>IP addresses</li>
+                    <li>Location data or geographic information</li>
+                    <li>Pages visited or browsing history</li>
+                    <li>Time spent on our site</li>
+                    <li>Device information beyond what your browser needs to display the site</li>
+                    <li>Any analytics or tracking data</li>
+                    <li>Third-party cookies or tracking technologies</li>
+                  </ul>
+                  <p className="text-gray-700 dark:text-gray-200 mt-4 mb-0">
+                    <strong>Our commitment:</strong> We believe your privacy is sacred. We don't want to know where you are, 
+                    what pages you visit, or how long you stay. We only collect information you explicitly choose to share with us 
+                    (like prayer requests, contact forms, or email subscriptions).
+                  </p>
+                </div>
               </div>
 
               <div>
@@ -94,15 +103,17 @@ const PrivacyPolicy = () => {
                 </div>
 
                 <p className="text-gray-700 dark:text-gray-200 mb-4">
-                  We use the information we collect to:
+                  We use the information you voluntarily provide to:
                 </p>
                 <ul className="text-gray-700 dark:text-gray-200 space-y-2">
                   <li><strong>Provide Ministry Services:</strong> Respond to prayer requests, offer spiritual support, and provide requested resources</li>
                   <li><strong>Communicate:</strong> Send updates, devotionals, and ministry announcements you've subscribed to</li>
-                  <li><strong>Improve Our Services:</strong> Understand how visitors use our website and improve user experience</li>
-                  <li><strong>Safety and Security:</strong> Protect against fraud, abuse, and security threats</li>
-                  <li><strong>Legal Compliance:</strong> Comply with applicable laws and regulations</li>
+                  <li><strong>Legal Compliance:</strong> Comply with applicable laws and regulations when necessary</li>
                 </ul>
+                <p className="text-gray-700 dark:text-gray-200 mt-4 mb-0">
+                  <strong>Note:</strong> We do not analyze or track your website usage. We don't use your information to "improve our services" 
+                  through tracking or analytics. We simply use what you share with us to serve you directly.
+                </p>
               </div>
 
               <div>
@@ -172,16 +183,24 @@ const PrivacyPolicy = () => {
                 </div>
 
                 <p className="text-gray-700 dark:text-gray-200 mb-4">
-                  We use cookies and similar tracking technologies to improve your experience on our website. Cookies are small data files stored on your device that help us:
+                  We use minimal, essential cookies only for:
                 </p>
                 <ul className="text-gray-700 dark:text-gray-200 space-y-2 mb-4">
-                  <li>Remember your preferences and settings</li>
-                  <li>Understand how you use our website</li>
-                  <li>Improve website functionality and performance</li>
-                  <li>Enable certain features (e.g., service worker for offline access)</li>
+                  <li>Remembering your theme preference (dark/light mode)</li>
+                  <li>Enabling offline access through our Progressive Web App (PWA) service worker</li>
+                </ul>
+                <p className="text-gray-700 dark:text-gray-200 mb-4">
+                  <strong>We do NOT use:</strong>
+                </p>
+                <ul className="text-gray-700 dark:text-gray-200 space-y-2 mb-4">
+                  <li>Analytics cookies</li>
+                  <li>Advertising cookies</li>
+                  <li>Third-party tracking cookies</li>
+                  <li>Any cookies that track your behavior or browsing patterns</li>
                 </ul>
                 <p className="text-gray-700 dark:text-gray-200">
-                  You can control cookies through your browser settings. However, disabling cookies may limit some website functionality.
+                  You can control cookies through your browser settings. Disabling cookies may limit some website functionality 
+                  (like theme preferences), but the core site will still work.
                 </p>
               </div>
 
@@ -254,7 +273,7 @@ const PrivacyPolicy = () => {
                 </div>
 
                 <p className="text-gray-700 dark:text-gray-200">
-                  We retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law. Prayer requests and related communications are retained to maintain a record of our ministry services and may be kept indefinitely unless you request deletion.
+                  We retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law. Prayer requests and related communications are retained to maintain a record of our ministry services. You may request deletion of your prayer requests or other personal information at any time by contacting us.
                 </p>
               </div>
 

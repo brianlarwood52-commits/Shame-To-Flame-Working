@@ -17,15 +17,7 @@ export interface BibleBook {
 
 export const bibleVersions: BibleVersion[] = [
   {
-    id: 'de4e12af7f28f599-02',
-    name: 'English Standard Version',
-    abbreviation: 'ESV',
-    description: 'A literal translation that balances accuracy with readability',
-    language: 'English',
-    available: true
-  },
-  {
-    id: '06125adad2d5898a-01',
+    id: 'de4e12af7f28f599-02', // KJV
     name: 'King James Version',
     abbreviation: 'KJV',
     description: 'The classic English translation from 1611',

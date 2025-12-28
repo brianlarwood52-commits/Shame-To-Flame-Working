@@ -168,7 +168,7 @@ const MinistryHub = () => {
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="font-serif text-2xl font-bold text-gray-800 dark:text-white">{ministry.name}</h3>
                       <a 
-                        href={`https://${ministry.website}`}
+                        href={ministry.name === "Running to God" ? "https://runningtogod.faith" : `https://${ministry.website}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center text-flame-600 dark:text-flame-400 hover:text-flame-700 dark:hover:text-flame-300 font-medium"

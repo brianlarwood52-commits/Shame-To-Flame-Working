@@ -3,31 +3,31 @@
   <!-- Main Pages -->
   <url>
     <loc>https://shametoflame.faith/</loc>
-    <lastmod>2024-12-12</lastmod>
+    <lastmod>2024-12-20</lastmod>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://shametoflame.faith/about</loc>
-    <lastmod>2024-12-12</lastmod>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://shametoflame.faith/my-story</loc>
-    <lastmod>2024-12-12</lastmod>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://shametoflame.faith/why-this-ministry</loc>
-    <lastmod>2024-12-12</lastmod>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://shametoflame.faith/contact</loc>
-    <lastmod>2024-12-12</lastmod>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
@@ -35,37 +35,37 @@
   <!-- Resources -->
   <url>
     <loc>https://shametoflame.faith/crisis-help</loc>
-    <lastmod>2024-12-12</lastmod>
+    <lastmod>2024-12-20</lastmod>
     <priority>1.0</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://shametoflame.faith/healing-pathways</loc>
-    <lastmod>2024-12-12</lastmod>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://shametoflame.faith/daily-fire</loc>
-    <lastmod>2024-12-12</lastmod>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.9</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://shametoflame.faith/prayer-rock</loc>
-    <lastmod>2024-12-12</lastmod>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://shametoflame.faith/prayer-rock-story</loc>
-    <lastmod>2024-12-12</lastmod>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://shametoflame.faith/submit-prayer</loc>
-    <lastmod>2024-12-12</lastmod>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
@@ -73,19 +73,25 @@
   <!-- Study Library -->
   <url>
     <loc>https://shametoflame.faith/bible-study</loc>
-    <lastmod>2024-12-12</lastmod>
-    <priority>0.8</priority>
+    <lastmod>2024-12-20</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://shametoflame.faith/bible-reader</loc>
+    <lastmod>2024-12-20</lastmod>
+    <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://shametoflame.faith/sda-commentary-search</loc>
-    <lastmod>2024-12-12</lastmod>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://shametoflame.faith/mary-magdalene-apologetic</loc>
-    <lastmod>2024-12-12</lastmod>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
@@ -93,7 +99,7 @@
   <!-- Ministry Hub -->
   <url>
     <loc>https://shametoflame.faith/ministry-hub</loc>
-    <lastmod>2024-12-12</lastmod>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
@@ -101,201 +107,201 @@
   <!-- Legal & Other -->
   <url>
     <loc>https://shametoflame.faith/privacy-policy</loc>
-    <lastmod>2024-12-12</lastmod>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.5</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
     <loc>https://shametoflame.faith/sitemap</loc>
-    <lastmod>2024-12-12</lastmod>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.5</priority>
     <changefreq>monthly</changefreq>
   </url>
 
-  <!-- Daily Fire Devotionals (1-31) -->
+  <!-- Daily Fire Devotionals (SEO-Friendly Slugs) -->
   <url>
-    <loc>https://shametoflame.faith/daily-fire/1</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/your-scars-tell-a-story-of-survival</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/2</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/when-god-feels-silent</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/3</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/the-courage-to-begin-again</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/4</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/healing-isn-t-linear</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/5</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/the-weight-you-re-carrying-isn-t-yours</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/6</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/god-sees-you-in-your-hiding</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/7</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/anxiety-is-not-a-sin</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/8</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/your-testimony-is-your-weapon</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/9</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/depression-doesn-t-disqualify-you</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/10</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/the-power-of-lament</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/11</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/you-re-not-too-much</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/12</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/small-steps-still-count</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/13</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/the-gift-of-anger</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/14</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/you-don-t-owe-anyone-your-story</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/15</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/when-you-can-t-feel-god-s-love</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/16</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/the-comparison-trap</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/17</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/rest-is-not-earned</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/18</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/forgiving-yourself</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/19</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/the-sacredness-of-friendship</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/20</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/when-prayer-feels-empty</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/21</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/the-courage-to-set-boundaries</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/22</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/god-wastes-nothing</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/23</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/the-power-of-yet</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/24</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/triggers-are-invitations</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/25</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/you-are-not-your-diagnosis</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/26</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/the-ministry-of-presence</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/27</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/breaking-generational-cycles</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/28</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/sacred-ordinary-days</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/29</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/the-long-obedience</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/30</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/permission-to-celebrate</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://shametoflame.faith/daily-fire/31</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://shametoflame.faith/daily-fire/you-re-going-to-make-it</loc>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
@@ -303,19 +309,19 @@
   <!-- Prayer Rock Blog Posts -->
   <url>
     <loc>https://shametoflame.faith/prayer-rock/blog/the-rock-that-changed-everything</loc>
-    <lastmod>2024-12-12</lastmod>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://shametoflame.faith/prayer-rock/blog/when-family-becomes-the-wound</loc>
-    <lastmod>2024-12-12</lastmod>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://shametoflame.faith/prayer-rock/blog/the-gift-of-spiritual-sensitivity</loc>
-    <lastmod>2024-12-12</lastmod>
+    <lastmod>2024-12-20</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>

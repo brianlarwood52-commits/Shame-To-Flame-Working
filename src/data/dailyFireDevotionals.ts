@@ -625,6 +625,24 @@ export function getDevotionalById(id: number): Devotional | undefined {
   return devotionals.find(d => d.id === id);
 }
 
+// Generate SEO-friendly slug from title
+export function titleToSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+// Get devotional by slug
+export function getDevotionalBySlug(slug: string): Devotional | undefined {
+  return devotionals.find(d => titleToSlug(d.title) === slug);
+}
+
+// Get slug for a devotional
+export function getDevotionalSlug(devotional: Devotional): string {
+  return titleToSlug(devotional.title);
+}
+
 export function getRecentDevotionals(count: number = 4): Devotional[] {
   const today = new Date();
   const dayOfMonth = today.getDate();

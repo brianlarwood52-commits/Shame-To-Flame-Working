@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import Navigation from '../src/components/Navigation'
-import Footer from '../src/components/Footer'
 import VideoBackground from '../src/components/VideoBackground'
 import PWAWrapper from '../src/components/PWAWrapper'
+import ClientFooter from '../src/components/ClientFooter'  // ← new import
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -12,7 +12,6 @@ export const viewport: Viewport = {
   userScalable: true,
   themeColor: '#ea580c',
 }
-
 
 export const metadata: Metadata = {
   title: {
@@ -88,7 +87,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -119,31 +118,14 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <VideoBackground />
         <div className="relative z-10">
           <Navigation />
           <main>{children}</main>
-          <Footer />
+          <ClientFooter />  {/* ← uses the client-only wrapper */}
         </div>
         <PWAWrapper />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                  navigator.serviceWorker.register('/sw.js')
-                    .then((registration) => {
-                      console.log('SW registered: ', registration);
-                    })
-                    .catch((registrationError) => {
-                      console.log('SW registration failed: ', registrationError);
-                    });
-                });
-              }
-            `,
-          }}
-        />
       </body>
     </html>
   )

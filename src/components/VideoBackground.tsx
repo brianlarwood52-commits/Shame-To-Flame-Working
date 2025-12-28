@@ -35,8 +35,8 @@ const VideoBackground = () => {
       }
     };
 
-    const handleError = () => {
-      console.log('Video failed to load');
+    const handleError = (e: Event) => {
+      console.error('Video failed to load:', e);
       setVideoError(true);
       setVideoLoaded(false);
     };
@@ -54,15 +54,30 @@ const VideoBackground = () => {
       video.play().catch(e => console.log('Loop restart failed:', e));
     };
 
+    const handleLoadedMetadata = () => {
+      console.log('Video metadata loaded');
+      // Try to play once metadata is loaded
+      if (video.paused) {
+        video.play().catch(e => console.log('Metadata load play attempt failed:', e));
+      }
+    };
+
+    // Set video source explicitly
+    video.load();
+
+    video.addEventListener('loadedmetadata', handleLoadedMetadata);
     video.addEventListener('loadeddata', handleLoadedData);
     video.addEventListener('error', handleError);
     video.addEventListener('canplay', handleCanPlay);
+    video.addEventListener('canplaythrough', handleCanPlay);
     video.addEventListener('ended', handleEnded);
 
     return () => {
+      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
       video.removeEventListener('loadeddata', handleLoadedData);
       video.removeEventListener('error', handleError);
       video.removeEventListener('canplay', handleCanPlay);
+      video.removeEventListener('canplaythrough', handleCanPlay);
       video.removeEventListener('ended', handleEnded);
     };
   }, []);
@@ -81,8 +96,10 @@ const VideoBackground = () => {
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
             videoLoaded ? 'opacity-100' : 'opacity-0'
           }`}
+          style={{ pointerEvents: 'none' }}
         >
           <source src="/shame-to-flame.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
       )}
       

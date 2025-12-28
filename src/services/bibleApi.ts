@@ -28,24 +28,33 @@ interface BibleBook {
 class BibleApiService {
   private apiKey = '69c0975e7dee3b884f01a69cc52901db';
   private baseUrl = 'https://api.scripture.api.bible/v1';
-  private bibleId = 'de4e12af7f28f599-02'; // English Standard Version
+  private bibleId = 'de4e12af7f28f599-02'; // Default: King James Version (KJV)
 
-  constructor() {
+  constructor(bibleId?: string) {
     // API key is hardcoded for this application
+    if (bibleId) {
+      this.bibleId = bibleId;
+    }
+  }
+
+  setBibleId(bibleId: string) {
+    this.bibleId = bibleId;
   }
 
   private async makeRequest(endpoint: string): Promise<any> {
     try {
-      console.log('Making Bible API request to:', `${this.baseUrl}${endpoint}`);
+      const fullUrl = `${this.baseUrl}${endpoint}`;
+      console.log('Making Bible API request to:', fullUrl);
+      console.log('Using Bible ID:', this.bibleId);
       
-      const response = await fetch(`${this.baseUrl}${endpoint}`, {
+      const response = await fetch(fullUrl, {
         headers: {
           'api-key': this.apiKey,
           'Accept': 'application/json',
         },
       });
 
-      console.log('Bible API response status:', response.status);
+      console.log('Bible API response status:', response.status, response.statusText);
 
       if (!response.ok) {
         let errorMessage = `Bible API request failed: ${response.status} ${response.statusText}`;
@@ -53,6 +62,7 @@ class BibleApiService {
         // Try to get more specific error information
         try {
           const errorData = await response.json();
+          console.error('Bible API error details:', errorData);
           if (errorData.error) {
             errorMessage += ` - ${errorData.error}`;
           }
@@ -61,6 +71,7 @@ class BibleApiService {
           }
         } catch (jsonError) {
           // If we can't parse the error response, just use the status
+          console.error('Could not parse error response:', jsonError);
         }
 
         // Provide more specific error messages based on status codes
@@ -91,11 +102,23 @@ class BibleApiService {
   async getPassage(reference: string): Promise<BiblePassage> {
     try {
       const formattedRef = this.formatReferenceForApi(reference);
+      const url = `/bibles/${this.bibleId}/passages/${formattedRef}?content-type=html&include-notes=false&include-titles=false&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=true`;
+      console.log('Bible API Request:', {
+        bibleId: this.bibleId,
+        reference: reference,
+        formattedRef: formattedRef,
+        fullUrl: `${this.baseUrl}${url}`
+      });
       // Request HTML content with verse numbers for proper formatting
-      const data = await this.makeRequest(`/bibles/${this.bibleId}/passages/${formattedRef}?content-type=html&include-notes=false&include-titles=false&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=true`);
+      const data = await this.makeRequest(url);
       return data.data;
     } catch (error) {
       console.error('Error fetching Bible passage:', error);
+      console.error('Request details:', {
+        bibleId: this.bibleId,
+        reference: reference,
+        formattedRef: this.formatReferenceForApi(reference)
+      });
       throw error;
     }
   }
@@ -128,6 +151,17 @@ class BibleApiService {
       return data.data;
     } catch (error) {
       console.error('Error fetching Bible books:', error);
+      throw error;
+    }
+  }
+
+  // Helper method to list all available Bibles and find ESV
+  async listBibles(): Promise<any[]> {
+    try {
+      const data = await this.makeRequest('/bibles');
+      return data.data || [];
+    } catch (error) {
+      console.error('Error listing Bibles:', error);
       throw error;
     }
   }
@@ -257,8 +291,101 @@ class BibleApiService {
   // Process HTML content to format verses properly with numbers and line breaks
   formatVerseContent(htmlContent: string): string {
     if (!htmlContent) return '';
+    
+    // First, ensure we're working with a string
+    if (typeof htmlContent !== 'string') {
+      htmlContent = String(htmlContent);
+    }
 
-    // Clean up the HTML content first
+    // Use DOM parser for more reliable extraction (if available)
+    if (typeof window !== 'undefined' && typeof DOMParser !== 'undefined') {
+      try {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlContent, 'text/html');
+        const verses: Array<{number: string, text: string}> = [];
+        
+        // Find all verse spans with data-number attribute
+        const verseSpans = doc.querySelectorAll('span[data-number]');
+        
+        // Get the parent container (usually a paragraph or div)
+        const container = verseSpans[0]?.parentElement || doc.body;
+        const allText = container.textContent || '';
+        
+        // Process each verse span
+        verseSpans.forEach((span, index) => {
+          const verseNumber = span.getAttribute('data-number');
+          if (!verseNumber) return;
+          
+          // Find the position of this verse span in the full text
+          const spanText = span.textContent || '';
+          const spanIndex = allText.indexOf(spanText);
+          
+          if (spanIndex < 0) {
+            // Fallback: just get text from span and following siblings
+            let verseText = '';
+            let node: Node | null = span;
+            while (node) {
+              if (node.nodeType === 3) {
+                verseText += node.textContent || '';
+              } else if (node.nodeType === 1) {
+                const el = node as Element;
+                if (el !== span && el.tagName === 'SPAN' && el.hasAttribute('data-number')) {
+                  break;
+                }
+                if (!el.hasAttribute('data-number')) {
+                  verseText += el.textContent || '';
+                }
+              }
+              node = node.nextSibling;
+            }
+            verseText = verseText
+              .trim()
+              .replace(new RegExp(`^${verseNumber}\\s+`), '') // Remove "1 " pattern
+              .replace(new RegExp(`^${verseNumber}`), '') // Remove "1" pattern (no space)
+              .trim();
+            if (verseText) {
+              verses.push({ number: verseNumber, text: verseText });
+            }
+            return;
+          }
+          
+          // Find the next verse span's position
+          const nextSpan = verseSpans[index + 1];
+          let endIndex = allText.length;
+          
+          if (nextSpan) {
+            const nextSpanText = nextSpan.textContent || '';
+            const nextIndex = allText.indexOf(nextSpanText, spanIndex);
+            if (nextIndex > spanIndex) {
+              endIndex = nextIndex;
+            }
+          }
+          
+            // Extract text between this verse and the next
+            let verseText = allText.substring(spanIndex + spanText.length, endIndex).trim();
+            
+            // Remove verse number if it appears at the start (multiple patterns)
+            verseText = verseText
+              .replace(new RegExp(`^${verseNumber}\\s+`), '') // Remove "1 " pattern
+              .replace(new RegExp(`^${verseNumber}`), '') // Remove "1" pattern (no space)
+              .trim();
+            
+            if (verseText && verseText.length > 0) {
+              verses.push({ number: verseNumber, text: verseText });
+            }
+        });
+        
+        console.log(`Parsed ${verses.length} verses using DOM parser`);
+        
+        if (verses.length > 0) {
+          return verses.map(verse => `${verse.number} ${verse.text}`).join('\n\n');
+        }
+      } catch (error) {
+        console.warn('DOM parsing failed, falling back to regex:', error);
+      }
+    }
+
+    // Fallback to regex parsing
     let cleanContent = htmlContent
       .replace(/<\/?p[^>]*>/g, '') // Remove paragraph tags
       .replace(/<\/?div[^>]*>/g, '') // Remove div tags
@@ -269,29 +396,25 @@ class BibleApiService {
     // Extract verses with their numbers using regex patterns
     const verses: Array<{number: string, text: string}> = [];
     
-    // Pattern 1: Look for verse spans with data-number attribute
-    const verseSpanPattern = /<span[^>]*class="[^"]*v[^"]*"[^>]*data-number="(\d+)"[^>]*>([^<]*)<\/span>([^<]*?)(?=<span[^>]*class="[^"]*v[^"]*"|$)/g;
+    // Pattern 1: Look for verse spans with data-number attribute (more flexible)
+    // This pattern captures: span with data-number, its content, and everything until next verse span
+    const verseSpanPattern = /<span[^>]*data-number="(\d+)"[^>]*>(.*?)<\/span>(.*?)(?=<span[^>]*data-number="\d+"|$)/gs;
     let match;
     
     while ((match = verseSpanPattern.exec(cleanContent)) !== null) {
       const verseNumber = match[1];
-      const verseText = (match[2] + match[3]).trim();
-      if (verseText) {
-        verses.push({ number: verseNumber, text: verseText });
-      }
-    }
-
-    // If no verses found with the first pattern, try alternative patterns
-    if (verses.length === 0) {
-      // Pattern 2: Look for any span with data-number
-      const altPattern = /<span[^>]*data-number="(\d+)"[^>]*>([^<]*)<\/span>([^<]*?)(?=<span[^>]*data-number="\d+"|$)/g;
+      const spanContent = match[2] || '';
+      const followingContent = match[3] || '';
+      let verseText = (spanContent + followingContent).trim();
       
-      while ((match = altPattern.exec(cleanContent)) !== null) {
-        const verseNumber = match[1];
-        const verseText = (match[2] + match[3]).trim();
-        if (verseText) {
-          verses.push({ number: verseNumber, text: verseText });
-        }
+      // Remove verse number if it appears at the start (multiple patterns)
+      verseText = verseText
+        .replace(new RegExp(`^${verseNumber}\\s+`), '') // Remove "1 " pattern
+        .replace(new RegExp(`^${verseNumber}`), '') // Remove "1" pattern (no space)
+        .trim();
+      
+      if (verseText && verseText.length > 0) {
+        verses.push({ number: verseNumber, text: verseText });
       }
     }
 
@@ -322,13 +445,41 @@ class BibleApiService {
 
     // Format the verses with proper spacing and line breaks
     if (verses.length > 0) {
-      return verses.map(verse => {
-        return `${verse.number} ${verse.text}`;
+      const formatted = verses.map(verse => {
+        // Ensure text has no HTML tags and no verse numbers
+        let cleanText = verse.text
+          .replace(/<[^>]*>/g, '') // Remove any remaining HTML tags
+          .replace(/&nbsp;/g, ' ') // Replace HTML entities
+          .replace(/&amp;/g, '&')
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'")
+          .replace(/\s+/g, ' ') // Normalize whitespace
+          // Remove verse number if it appears at the start (multiple patterns)
+          .replace(new RegExp(`^${verse.number}\\s+`), '') // Remove "1 " pattern
+          .replace(new RegExp(`^${verse.number}`), '') // Remove "1" pattern (no space)
+          .trim();
+        return `${verse.number} ${cleanText}`;
       }).join('\n\n');
+      
+      console.log(`Formatted ${verses.length} verses. First verse: "${verses[0]?.number} ${verses[0]?.text?.substring(0, 50)}..."`);
+      return formatted;
     }
 
-    // Fallback: return cleaned content as-is
-    return cleanContent.replace(/<[^>]*>/g, '').trim();
+    // Fallback: return cleaned content as-is (strip all HTML)
+    const fallback = cleanContent
+      .replace(/<[^>]*>/g, '') // Remove all HTML tags
+      .replace(/&nbsp;/g, ' ') // Replace HTML entities
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/\s+/g, ' ') // Normalize whitespace
+      .trim();
+    console.warn('No verses found, returning fallback content');
+    return fallback;
   }
 }
 

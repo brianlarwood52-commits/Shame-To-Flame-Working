@@ -3,6 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Flame, Heart, Mail } from 'lucide-react'
+import InstallPrompt from '../../app/components/InstallPrompt'
 
 const Footer = () => {
   return (
@@ -75,6 +76,10 @@ const Footer = () => {
                   </li>
                 </ul>
               </div>
+
+              <div>
+                <InstallPrompt />
+              </div>
             </div>
           </div>
         </div>
@@ -85,13 +90,16 @@ const Footer = () => {
               <Link href="/privacy-policy" className="hover:text-white transition-colors duration-200">
                 Privacy Policy
               </Link>
+              <Link href="/unsubscribe" className="hover:text-white transition-colors duration-200">
+                Unsubscribe
+              </Link>
               <Link href="/sitemap" className="hover:text-white transition-colors duration-200">
                 Sitemap
               </Link>
             </div>
             <div className="text-center md:text-right">
               <p className="text-gray-400 text-sm">
-                © 2024 Shame to Flame Ministry. All rights reserved.
+                © {new Date().getFullYear()} Shame to Flame Ministry. All rights reserved.
               </p>
               <p className="text-gray-500 text-xs mt-1">
                 Walking together toward healing and hope.

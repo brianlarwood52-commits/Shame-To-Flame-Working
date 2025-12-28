@@ -1,10 +1,9 @@
 'use client'
 
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Flame, Menu, X, ChevronDown } from 'lucide-react'
-import ThemeToggle from './ThemeToggle'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -12,7 +11,16 @@ const Navigation = () => {
   const [resourcesDropdownOpen, setResourcesDropdownOpen] = useState(false)
   const [studyLibraryDropdownOpen, setStudyLibraryDropdownOpen] = useState(false)
   const [prayerRockDropdownOpen, setPrayerRockDropdownOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
+  
+  // Prevent hydration mismatch by only using pathname after mount
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+  
+  // Use empty string for pathname during SSR to prevent hydration mismatch
+  const currentPathname = mounted ? pathname : ''
   const aboutTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const resourcesTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const studyLibraryTimeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -89,8 +97,9 @@ const Navigation = () => {
   ]
 
   const studyLibraryItems = [
-    { path: '/mary-magdalene-apologetic', label: 'Mary Magdalene Apologetic' },
+    { path: '/bible-reader', label: 'Bible Reader' },
     { path: '/bible-study', label: 'Bible Study Hub' },
+    { path: '/mary-magdalene-apologetic', label: 'Mary Magdalene Apologetic' },
     { path: '/sda-commentary-search', label: 'SDA Commentary' },
   ]
 
@@ -115,7 +124,7 @@ const Navigation = () => {
             <Link
               href="/"
               className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                pathname === '/'
+                currentPathname === '/'
                   ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
                   : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
               }`}
@@ -130,7 +139,7 @@ const Navigation = () => {
             >
               <button
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center space-x-1 ${
-                  aboutItems.some(item => pathname === item.path)
+                  aboutItems.some(item => currentPathname === item.path)
                     ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
                     : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
                 }`}
@@ -145,7 +154,7 @@ const Navigation = () => {
                       key={item.path}
                       href={item.path}
                       className={`block px-4 py-2 text-sm transition-all duration-200 ${
-                        pathname === item.path
+                        currentPathname === item.path
                           ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
                           : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
                       }`}
@@ -164,7 +173,7 @@ const Navigation = () => {
             >
               <button
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center space-x-1 ${
-                  resourceItems.some(item => pathname === item.path)
+                  resourceItems.some(item => currentPathname === item.path)
                     ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
                     : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
                 }`}
@@ -179,7 +188,7 @@ const Navigation = () => {
                       key={item.path}
                       href={item.path}
                       className={`block px-4 py-2 text-sm transition-all duration-200 ${
-                        pathname === item.path
+                        currentPathname === item.path
                           ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
                           : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
                       }`}
@@ -198,7 +207,7 @@ const Navigation = () => {
             >
               <button
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center space-x-1 ${
-                  studyLibraryItems.some(item => pathname === item.path)
+                  studyLibraryItems.some(item => currentPathname === item.path)
                     ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
                     : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
                 }`}
@@ -213,7 +222,7 @@ const Navigation = () => {
                       key={item.path}
                       href={item.path}
                       className={`block px-4 py-2 text-sm transition-all duration-200 ${
-                        pathname === item.path
+                        currentPathname === item.path
                           ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
                           : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
                       }`}
@@ -232,7 +241,7 @@ const Navigation = () => {
             >
               <button
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center space-x-1 ${
-                  prayerRockItems.some(item => pathname === item.path)
+                  prayerRockItems.some(item => currentPathname === item.path)
                     ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
                     : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
                 }`}
@@ -247,7 +256,7 @@ const Navigation = () => {
                       key={item.path}
                       href={item.path}
                       className={`block px-4 py-2 text-sm transition-all duration-200 ${
-                        pathname === item.path
+                        currentPathname === item.path
                           ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
                           : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
                       }`}
@@ -264,7 +273,7 @@ const Navigation = () => {
                 key={item.path}
                 href={item.path}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                  pathname === item.path
+                  currentPathname === item.path
                     ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
                     : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
                 }`}
@@ -272,11 +281,9 @@ const Navigation = () => {
                 {item.label}
               </Link>
             ))}
-            <ThemeToggle />
           </div>
 
           <div className="lg:hidden flex items-center space-x-2">
-            <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30 transition-colors duration-200"
@@ -293,7 +300,7 @@ const Navigation = () => {
                 href="/"
                 onClick={() => setIsOpen(false)}
                 className={`block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 ${
-                  pathname === '/'
+                  currentPathname === '/'
                     ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
                     : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
                 }`}
@@ -317,7 +324,7 @@ const Navigation = () => {
                         href={item.path}
                         onClick={() => setIsOpen(false)}
                         className={`block px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                          pathname === item.path
+                          currentPathname === item.path
                             ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
                             : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
                         }`}
@@ -345,7 +352,7 @@ const Navigation = () => {
                         href={item.path}
                         onClick={() => setIsOpen(false)}
                         className={`block px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                          pathname === item.path
+                          currentPathname === item.path
                             ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
                             : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
                         }`}
@@ -373,7 +380,7 @@ const Navigation = () => {
                         href={item.path}
                         onClick={() => setIsOpen(false)}
                         className={`block px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                          pathname === item.path
+                          currentPathname === item.path
                             ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
                             : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
                         }`}
@@ -401,7 +408,7 @@ const Navigation = () => {
                         href={item.path}
                         onClick={() => setIsOpen(false)}
                         className={`block px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                          pathname === item.path
+                          currentPathname === item.path
                             ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
                             : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
                         }`}
@@ -419,7 +426,7 @@ const Navigation = () => {
                   href={item.path}
                   onClick={() => setIsOpen(false)}
                   className={`block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 ${
-                    pathname === item.path
+                    currentPathname === item.path
                       ? 'bg-flame-100 dark:bg-flame-900/50 text-flame-700 dark:text-flame-300'
                       : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400 hover:bg-flame-50 dark:hover:bg-flame-900/30'
                   }`}

@@ -162,14 +162,14 @@ const PrayerRock = () => {
         </div>
       </section>
 
-      {/* Navigation Tabs */}
+      {/* Navigation Tabs - Mobile Responsive */}
       <section className="py-8 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center">
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-full p-1">
+          <div className="flex justify-center overflow-x-auto scrollbar-hide -mx-4 sm:mx-0 px-4 sm:px-0" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <div className="bg-gray-100 dark:bg-gray-800 rounded-full p-1 flex gap-1">
               <button
                 onClick={() => setActiveTab('blog')}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-200 ${
+                className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium text-xs sm:text-base transition-all duration-200 whitespace-nowrap ${
                   activeTab === 'blog'
                     ? 'bg-flame-600 text-white shadow-lg'
                     : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400'
@@ -179,7 +179,7 @@ const PrayerRock = () => {
               </button>
               <button
                 onClick={() => setActiveTab('prayers')}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-200 ${
+                className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium text-xs sm:text-base transition-all duration-200 whitespace-nowrap ${
                   activeTab === 'prayers'
                     ? 'bg-flame-600 text-white shadow-lg'
                     : 'text-gray-600 dark:text-gray-300 hover:text-flame-600 dark:hover:text-flame-400'
@@ -201,42 +201,42 @@ const PrayerRock = () => {
                 Featured Reflections
               </h2>
               
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                 {featuredPosts.map((post) => (
                   <article key={post.id} className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden border border-white/20 dark:border-gray-700/50">
-                    <div className="p-6">
-                      <div className="flex items-center justify-between mb-4">
-                        <span className={`text-xs px-3 py-1 rounded-full font-medium ${getCategoryColor(post.category)}`}>
+                    <div className="p-4 sm:p-6">
+                      <div className="flex items-center justify-between mb-3 sm:mb-4">
+                        <span className={`text-xs px-2 sm:px-3 py-1 rounded-full font-medium ${getCategoryColor(post.category)}`}>
                           {post.category.charAt(0).toUpperCase() + post.category.slice(1)}
                         </span>
-                        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                          <Clock className="h-4 w-4 mr-1" />
+                        <div className="flex items-center text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                          <Clock className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
                           <span>{post.readTime} min read</span>
                         </div>
                       </div>
                       
-                      <h3 className="font-serif text-xl font-semibold text-gray-800 dark:text-white mb-3 hover:text-flame-600 dark:hover:text-flame-400 transition-colors duration-200">
+                      <h3 className="font-serif text-lg sm:text-xl font-semibold text-gray-800 dark:text-white mb-2 sm:mb-3 hover:text-flame-600 dark:hover:text-flame-400 transition-colors duration-200">
                         {post.title}
                       </h3>
                       
-                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                      <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed mb-3 sm:mb-4 line-clamp-3">
                         {post.excerpt}
                       </p>
                       
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                          <User className="h-4 w-4 mr-1" />
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
+                        <div className="flex items-center text-xs sm:text-sm text-gray-500 dark:text-gray-400 flex-wrap gap-1 sm:gap-0">
+                          <User className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
                           <span>{post.author}</span>
-                          <span className="mx-2">•</span>
-                          <Calendar className="h-4 w-4 mr-1" />
+                          <span className="mx-1 sm:mx-2 hidden sm:inline">•</span>
+                          <Calendar className="h-3 w-3 sm:h-4 sm:w-4 mr-1 ml-1 sm:ml-0" />
                           <span>{formatDate(post.publishDate)}</span>
                         </div>
                         <Link
                           href={`/prayer-rock/blog/${post.id}`}
-                          className="text-flame-600 dark:text-flame-400 hover:text-flame-700 dark:hover:text-flame-300 font-medium flex items-center group"
+                          className="text-flame-600 dark:text-flame-400 hover:text-flame-700 dark:hover:text-flame-300 font-medium flex items-center group text-sm sm:text-base"
                         >
                           Read More
-                          <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
+                          <ArrowRight className="ml-1 h-3 w-3 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-transform duration-200" />
                         </Link>
                       </div>
                     </div>
@@ -290,10 +290,10 @@ const PrayerRock = () => {
                 All Reflections
               </h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                 {filteredPosts.map((post) => (
                   <article key={post.id} className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden border border-white/20 dark:border-gray-700/50">
-                    <div className="p-6">
+                    <div className="p-4 sm:p-6">
                       <div className="flex items-center justify-between mb-3">
                         <span className={`text-xs px-2 py-1 rounded-full font-medium ${getCategoryColor(post.category)}`}>
                           {post.category.charAt(0).toUpperCase() + post.category.slice(1)}
@@ -304,20 +304,20 @@ const PrayerRock = () => {
                         </div>
                       </div>
                       
-                      <h3 className="font-serif text-lg font-semibold text-gray-800 dark:text-white mb-2 hover:text-flame-600 dark:hover:text-flame-400 transition-colors duration-200">
+                      <h3 className="font-serif text-base sm:text-lg font-semibold text-gray-800 dark:text-white mb-2 hover:text-flame-600 dark:hover:text-flame-400 transition-colors duration-200">
                         {post.title}
                       </h3>
                       
-                      <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3">
+                      <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-3 sm:mb-4 line-clamp-3">
                         {post.excerpt}
                       </p>
                       
-                      <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-3">
+                      <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-3 flex-wrap gap-2">
                         <span>{formatDate(post.publishDate)}</span>
                         <span>by {post.author}</span>
                       </div>
                       
-                      <div className="flex flex-wrap gap-1 mb-4">
+                      <div className="flex flex-wrap gap-1 mb-3 sm:mb-4">
                         {post.tags.slice(0, 3).map((tag, index) => (
                           <span key={index} className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded">
                             #{tag}
