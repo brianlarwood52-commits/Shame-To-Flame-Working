@@ -10,7 +10,7 @@ const PathwayDetail = () => {
   const [currentSessionIndex, setCurrentSessionIndex] = useState(0);
   const [completedSessions, setCompletedSessions] = useState<Set<number>>(new Set());
 
-  const pathway = null;
+  const pathway: any = null;
 
   if (!pathway) {
     return (
