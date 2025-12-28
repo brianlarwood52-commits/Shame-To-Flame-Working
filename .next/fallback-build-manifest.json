@@ -1,0 +1,12 @@
+{
+  "pages": {
+    "/_app": []
+  },
+  "devFiles": [],
+  "polyfillFiles": [],
+  "lowPriorityFiles": [
+    "static/Kn2hrPyXSKyZldOtiumYK/_ssgManifest.js",
+    "static/Kn2hrPyXSKyZldOtiumYK/_buildManifest.js"
+  ],
+  "rootMainFiles": []
+}

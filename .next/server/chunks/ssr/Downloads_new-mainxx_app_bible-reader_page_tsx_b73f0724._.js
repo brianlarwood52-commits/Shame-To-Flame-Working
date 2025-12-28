@@ -1,0 +1,3 @@
+module.exports=[82428,a=>{"use strict";var b=a.i(86933),c=a.i(48963),d=a.i(78140);function e(){let a=(0,d.useSearchParams)(),c=a?.get("ref")??"John 3:16";return(0,b.jsx)("div",{className:"min-h-screen bg-gradient-to-br from-sky-50/90 to-flame-50/90 py-20 px-4",children:(0,b.jsxs)("div",{className:"max-w-4xl mx-auto text-center",children:[(0,b.jsx)("h1",{className:"text-3xl font-serif font-bold mb-4",children:"Bible Reader"}),(0,b.jsxs)("p",{className:"text-xl",children:["Reading: ",c]})]})})}function f(){return(0,b.jsx)(c.Suspense,{fallback:(0,b.jsx)("div",{className:"p-20 text-center",children:"Loading Reader..."}),children:(0,b.jsx)(e,{})})}a.s(["default",()=>f])}];
+
+//# sourceMappingURL=Downloads_new-mainxx_app_bible-reader_page_tsx_b73f0724._.js.map

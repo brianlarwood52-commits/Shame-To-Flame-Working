@@ -1,0 +1,3 @@
+{
+  "/api/admin/send-2fa/route": "app/api/admin/send-2fa/route.js"
+}
