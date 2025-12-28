@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fdaily-fire\u002F[id]","\u002Fhealing-pathways\u002F[id]","\u002Fmy-studio\u002F[[...tool]]","\u002Fprayer-rock\u002Fblog\u002F[id]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()

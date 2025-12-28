@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/prayer-rock/layout,_N_T_/prayer-rock/blog/layout,_N_T_/prayer-rock/blog/[id]/layout,_N_T_/prayer-rock/blog/[id]/page,_N_T_/prayer-rock/blog/the-gift-of-spiritual-sensitivity"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/prayer-rock/blog/$d$id/__PAGE__",
+    "/prayer-rock/blog/$d$id",
+    "/prayer-rock/blog",
+    "/prayer-rock",
+    "/_index",
+    "/_head"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/prayer-rock/layout,_N_T_/prayer-rock/page,_N_T_/prayer-rock"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/prayer-rock/__PAGE__",
+    "/prayer-rock",
+    "/_index",
+    "/_head"
+  ]
+}

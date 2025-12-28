@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/why-this-ministry/layout,_N_T_/why-this-ministry/page,_N_T_/why-this-ministry"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/why-this-ministry/__PAGE__",
+    "/why-this-ministry",
+    "/_index",
+    "/_head"
+  ]
+}

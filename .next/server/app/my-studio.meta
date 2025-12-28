@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/my-studio/layout,_N_T_/my-studio/[[...tool]]/layout,_N_T_/my-studio/[[...tool]]/page,_N_T_/my-studio"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/my-studio/$oc$tool/__PAGE__",
+    "/my-studio/$oc$tool",
+    "/my-studio",
+    "/_index",
+    "/_head"
+  ]
+}

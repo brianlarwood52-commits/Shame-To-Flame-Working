@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/healing-pathways/layout,_N_T_/healing-pathways/[id]/layout,_N_T_/healing-pathways/[id]/page,_N_T_/healing-pathways/grief-and-loss"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/healing-pathways/$d$id/__PAGE__",
+    "/healing-pathways/$d$id",
+    "/healing-pathways",
+    "/_index",
+    "/_head"
+  ]
+}
